@@ -51,7 +51,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""99a5287c-380f-490e-ba2d-6d3d8b17447c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -60,7 +60,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""24e2b26b-d10a-4b1e-8e00-f413c08310ef"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=1,pressPoint=0.5)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -69,7 +69,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""2f18df87-f18f-4317-9fd1-d30244ee9c3d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -78,7 +78,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""586e5bd8-14f2-4a7a-8008-3f5835728d33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -87,7 +87,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""5ce0d219-49d0-402d-9442-6f41cc0b74d1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -96,7 +96,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""e0531eb5-7514-447c-a52a-4a9fe3f2b2ea"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 }
             ],
