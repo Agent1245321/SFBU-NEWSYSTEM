@@ -65,7 +65,7 @@
                     "id": "5ce0d219-49d0-402d-9442-6f41cc0b74d1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Tap(duration=0.5,pressPoint=0.5),SlowTap",
                     "initialStateCheck": false
                 },
                 {
@@ -468,17 +468,6 @@
                     "name": "",
                     "id": "ca3f681d-26fb-4203-824b-d3b267359770",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "South Button",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "98a5e0ac-7f82-44ab-9263-ceb4c76ec2f5",
-                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -60,7 +60,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""24e2b26b-d10a-4b1e-8e00-f413c08310ef"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=1,pressPoint=0.5)"",
+                    ""interactions"": ""Hold(duration=0.5,pressPoint=0.5),Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -87,7 +87,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""5ce0d219-49d0-402d-9442-6f41cc0b74d1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Tap(duration=0.5,pressPoint=0.5),SlowTap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -490,17 +490,6 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""ca3f681d-26fb-4203-824b-d3b267359770"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""South Button"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""98a5e0ac-7f82-44ab-9263-ceb4c76ec2f5"",
-                    ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
