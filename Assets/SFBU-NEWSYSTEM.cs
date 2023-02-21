@@ -51,7 +51,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""99a5287c-380f-490e-ba2d-6d3d8b17447c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Tap(duration=5),SlowTap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -60,7 +60,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""24e2b26b-d10a-4b1e-8e00-f413c08310ef"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.5,pressPoint=0.5),Press(behavior=1)"",
+                    ""interactions"": ""Tap(duration=0.5),SlowTap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -213,17 +213,6 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""00ad77fd-4042-4e43-bcd3-fec426ae3db3"",
-                    ""path"": ""<XInputController>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Left Stick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
@@ -345,17 +334,6 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0016ce1d-30bd-4082-9efe-48b55416751e"",
-                    ""path"": ""<XInputController>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Right Stick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8b9a8b75-8f7e-4f1b-a80d-f10f869721d9"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -369,17 +347,6 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""1351ade9-7eec-4d7f-842f-17a60868aef3"",
                     ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Right Bumper"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""82071fa1-8c43-45ad-89d1-a3d8e4290178"",
-                    ""path"": ""<XInputController>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -411,30 +378,8 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e1a33e68-16e1-4a30-b10c-e95a92109434"",
-                    ""path"": ""<XInputController>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Left Bumper"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9587b438-ed90-478c-8659-2b5409f333fd"",
                     ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""North Button"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f7d104f0-1eae-46ff-8a3c-216c7a4f46f9"",
-                    ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -457,17 +402,6 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b908b0a2-3871-4bc0-84a1-cb9739b7debd"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""East Button"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d423d15e-79e1-4369-a3ad-af9d4504ec01"",
-                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -512,17 +446,6 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""aac84ad9-4881-42d5-aa57-3324aa7ff115"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""West Button"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e4a5ad75-a1c2-4ebe-9367-22069a310280"",
-                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
