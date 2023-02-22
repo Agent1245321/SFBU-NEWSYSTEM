@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
         playerControls.Player.SouthButton.canceled += context =>
         {
             //jump button held long enough for slow tap
-            if (context.interaction is TapInteraction) ChargedJump();
+            if (context.interaction is TapInteraction) ChargedJumpUI();
         };
 
         playerControls.Player.SouthButton.performed +=
@@ -63,12 +63,15 @@ public class InputManager : MonoBehaviour
 
         playerControls.Player.LeftBumper.performed += context =>
         {
-            LeftLaunch();
+            if (context.interaction is SlowTapInteraction) BigLeftLaunch();
+            else LeftLaunch();
+
         };
 
         playerControls.Player.RightBumper.performed += context =>
         {
-            RightLaunch();
+            if (context.interaction is SlowTapInteraction) BigRightLaunch();
+            else RightLaunch();
         };
 
 
@@ -95,7 +98,7 @@ public class InputManager : MonoBehaviour
 
     private void Jump()
     {
-        Debug.Log("Attempting to jump");
+       
         
         //sets jump height
         Vector3 jumpV = new Vector3(0, jumpHeight, 0);
@@ -142,7 +145,7 @@ public class InputManager : MonoBehaviour
 
     }
 
-   private void ChargedJump()
+   private void ChargedJumpUI()
     {//set the charged bool for changing color if started in air without jumps
         charged = true;
         if (isGrounded == true || bonusJumps > 0)
@@ -155,7 +158,7 @@ public class InputManager : MonoBehaviour
 
     private void StartedToCharge()
     {
-        Debug.Log("StartingToJump");
+        
         //check if can jump then set color to green
         if(isGrounded || bonusJumps > 0) bottomColor.material.color = new Color32(50, 255, 50, 143);
         else
@@ -165,21 +168,55 @@ public class InputManager : MonoBehaviour
     }
 
 
-    private void LeftLaunch()
+    private void BigLeftLaunch()
     {
+        if (isGrounded == false && bonusJumps < 1) return;
+
+            Debug.Log("ChargedLeftLaunch");
         //cancel out the downward velocity
         playerRB.AddForce(new Vector3(-playerRB.velocity.x, -playerRB.velocity.y, 0f), ForceMode.VelocityChange);
 
-        playerRB.AddForce(new Vector3(-launchSpeed, launchHeight, 0), ForceMode.VelocityChange);
+        playerRB.AddForce(new Vector3(-launchSpeed * 1.5f, launchHeight * 2f, 0), ForceMode.VelocityChange);
+        if (isGrounded == false) bonusJumps -= 1;
     }
 
+    private void LeftLaunch()
+    {
+
+        if (isGrounded == false && bonusJumps < 1) return;
+
+
+        Debug.Log("LeftLaunch");
+        playerRB.AddForce(new Vector3(-playerRB.velocity.x, -playerRB.velocity.y, 0f), ForceMode.VelocityChange);
+
+        playerRB.AddForce(new Vector3(-launchSpeed, launchHeight, 0), ForceMode.VelocityChange);
+        if (isGrounded == false) bonusJumps -= 1;
+    }
+
+
+    private void BigRightLaunch()
+    {
+
+        if (isGrounded == false && bonusJumps < 1) return;
+
+
+        Debug.Log("ChargedRightLaunch");
+        //cancel out the downward and horizontal velocity
+        playerRB.AddForce(new Vector3(-playerRB.velocity.x, -playerRB.velocity.y, 0f), ForceMode.VelocityChange);
+
+        playerRB.AddForce(new Vector3(launchSpeed * 1.5f, launchHeight * 2f, 0), ForceMode.VelocityChange);
+        if (isGrounded == false) bonusJumps -= 1;
+    }
     private void RightLaunch()
     {
-        Debug.Log("HEHEH YEAH BOI LAUNCH ME");
+
+        if (isGrounded == false && bonusJumps < 1) return;
+
         //cancel out the downward velocity
         playerRB.AddForce(new Vector3(-playerRB.velocity.x, -playerRB.velocity.y, 0f), ForceMode.VelocityChange);
 
        playerRB.AddForce(new Vector3(launchSpeed, launchHeight, 0), ForceMode.VelocityChange);
+        if (isGrounded == false) bonusJumps -= 1;
     }
     private void FixedUpdate()
     {

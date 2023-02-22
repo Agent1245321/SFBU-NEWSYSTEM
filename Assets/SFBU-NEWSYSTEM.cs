@@ -51,7 +51,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""99a5287c-380f-490e-ba2d-6d3d8b17447c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap(duration=5),SlowTap"",
+                    ""interactions"": ""Tap(duration=0.5),SlowTap"",
                     ""initialStateCheck"": false
                 },
                 {

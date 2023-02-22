@@ -235,8 +235,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562640599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.5, y: -168.6, z: 0}
-  m_LocalScale: {x: 7.7582, y: 512.00867, z: 1}
+  m_LocalPosition: {x: 37.411, y: -168.6, z: 0}
+  m_LocalScale: {x: 15.052654, y: 3494.0496, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -416,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -17.3}
+  m_LocalPosition: {x: 0, y: 4.32, z: -32.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -432,6 +432,14 @@ PrefabInstance:
     - target: {fileID: 2228461492149013270, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
       propertyPath: m_Constraints
       value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228461492149013270, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228461492149013270, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4590923500458550277, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
       propertyPath: speed
@@ -609,7 +617,7 @@ Transform:
   m_GameObject: {fileID: 1713426733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -253.7, z: 0}
-  m_LocalScale: {x: 7.7582, y: 512.00867, z: 1}
+  m_LocalScale: {x: 13.389878, y: 512.00867, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -703,8 +711,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069144172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.6, y: -168.6, z: 0}
-  m_LocalScale: {x: 7.7582, y: 512.00867, z: 1}
+  m_LocalPosition: {x: -36.511, y: -168.6, z: 0}
+  m_LocalScale: {x: 15.052654, y: 3494.0496, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
