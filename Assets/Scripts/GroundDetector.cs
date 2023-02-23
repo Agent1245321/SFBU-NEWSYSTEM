@@ -25,6 +25,7 @@ public class GroundDetector : MonoBehaviour
             {
             // disables grounded when leaving ground
                 InputManager.isGrounded = false;
+            InputManager.moveMultiplier = 1f;
             }
         }
 }

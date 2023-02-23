@@ -146,6 +146,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottomColor: {fileID: 38708347}
+--- !u!1 &498373860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4590923500895528610, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
+  m_PrefabInstance: {fileID: 1594349339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &562640599
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,8 +240,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562640599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.411, y: -168.6, z: 0}
-  m_LocalScale: {x: 15.052654, y: 3494.0496, z: 1}
+  m_LocalPosition: {x: 325.78, y: -168.6, z: 0}
+  m_LocalScale: {x: 132.49196, y: 3494.0496, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -416,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.32, z: -32.2}
+  m_LocalPosition: {x: 0, y: 4.32, z: -264.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -441,6 +446,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4590923500458550277, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
+      propertyPath: pl1
+      value: 
+      objectReference: {fileID: 498373860}
     - target: {fileID: 4590923500458550277, guid: 6e088f8218fa5e741a81de1b6bc64240, type: 3}
       propertyPath: speed
       value: 25
@@ -711,8 +720,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069144172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.511, y: -168.6, z: 0}
-  m_LocalScale: {x: 15.052654, y: 3494.0496, z: 1}
+  m_LocalPosition: {x: -324.88, y: -168.6, z: 0}
+  m_LocalScale: {x: 132.49196, y: 3494.0496, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4

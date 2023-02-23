@@ -13,12 +13,13 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private InputActionReference actionReference;
 
-    
+    public GameObject pl1;
     public Rigidbody playerRB;
 
     public Vector2 move;
     public Vector2 aim;
     public float speed;
+    public static float moveMultiplier;
 
     public MeshRenderer bottomColor;
     public GameObject groundCollider;
@@ -39,7 +40,8 @@ public class InputManager : MonoBehaviour
         playerControls.Enable();
         actionReference.action.Enable();
 
-        
+        playerControls.Player.NorthButton.performed += _ => Restet();
+
         playerControls.Player.SouthButton.started += context =>
         {
             //jump button started to press
@@ -114,6 +116,11 @@ public class InputManager : MonoBehaviour
 
         //subtracts bonus jump if applicable
         if (isGrounded == false) bonusJumps -= 1;
+
+        //slows movement
+        moveMultiplier = .85f;
+
+
         bottomColor.material.color = new Color32(245, 255, 0, 143);
 
     }
@@ -139,6 +146,9 @@ public class InputManager : MonoBehaviour
 
         //subtracts bonus jump if applicable
         if (isGrounded == false) bonusJumps -= 1;
+
+        //slows movement
+        moveMultiplier = .55f;
         bottomColor.material.color = new Color32(245, 255, 0, 143);
 
 
@@ -230,7 +240,16 @@ public class InputManager : MonoBehaviour
         if (move.x < 0f && playerRB.velocity.x > 0f && isGrounded == true) playerRB.AddForce(new Vector3(-playerRB.velocity.x, 0, 0), ForceMode.VelocityChange);
         if (move.x > 0f && playerRB.velocity.x < 0f && isGrounded == true) playerRB.AddForce(new Vector3(-playerRB.velocity.x, 0, 0), ForceMode.VelocityChange);
 
-        playerRB.AddForce(new Vector3(move.x, 0, 0) * speed * Time.deltaTime, ForceMode.VelocityChange);
+        
+        playerRB.AddForce(new Vector3(move.x, 0, 0) * speed * moveMultiplier * Time.deltaTime, ForceMode.VelocityChange);
+    }
+
+    private void Restet()
+    {
+        Debug.Log("reset");
+        playerRB.velocity = new Vector3(0, 0, 0);
+        pl1.transform.position = new Vector3(0, 5, 0);
+        pl1.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
 }
