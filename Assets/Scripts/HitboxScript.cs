@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class HitboxScript : MonoBehaviour
 {
-    public MeshRenderer thisColor;
+    private MeshRenderer thisColor;
     private Color originalColor;
+    
 
 
 
@@ -27,9 +28,16 @@ public class HitboxScript : MonoBehaviour
 
 
         //sets the bools for the combat script
-        if (this.gameObject.name == "HighHitbox") CombatManager.highCheck = true;
-        if (this.gameObject.name == "LowHitbox") CombatManager.lowCheck = true;
-        if (this.gameObject.name == "FloorCollider") CombatManager.floorCheck = true;
+        if (attack.tag != "ground")
+        {
+            if (this.gameObject.name == "HighHitbox") CombatManager.highCheck = true;
+            if (this.gameObject.name == "LowHitbox") CombatManager.lowCheck = true;
+            if (this.gameObject.name == "FloorCollider") CombatManager.floorCheck = true;
+        }
+
+        CombatManager.collidingAttack = attack;
+
+        CombatManager.isBeingHit();
 
         
     }

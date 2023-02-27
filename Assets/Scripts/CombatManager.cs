@@ -18,10 +18,12 @@ public class CombatManager : MonoBehaviour
     public GameObject lowHitbox;
 
 
+
     //the bools to see what is hit
     public static bool floorCheck;
     public static bool lowCheck;
     public static bool highCheck;
+    public static Collider collidingAttack;
 
 
     private void Awake()
@@ -36,16 +38,20 @@ public class CombatManager : MonoBehaviour
     }
 
     //function called from the hitbox script when being hit
-    public void isBeingHit()
+    public static void isBeingHit()
     {
-        
+        if (highCheck == true) Debug.Log("Highbox Colliding with " + collidingAttack.name);
+        if (lowCheck == true) Debug.Log("LowBox Colliding with " + collidingAttack.name);
+        if (floorCheck == true) Debug.Log("FloorBox Colliding with " + collidingAttack.name);
+
     }
 
     private void Update()
     {
-        Debug.Log(floorCheck);
+       /* Debug.Log(floorCheck);
         Debug.Log(lowCheck);
         Debug.Log(highCheck);
+       */
     }
 }
 
