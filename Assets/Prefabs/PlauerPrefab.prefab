@@ -353,7 +353,39 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 22b5e387-aca8-4c12-b13a-2cea7bc4fe96
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0e9e40e-2d24-4218-9a31-b83d6228915c
+    m_ActionName: Player 2/Left Stick[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e63c0443-3022-4297-8c77-a3bb7fc3fb29
+    m_ActionName: Player 2/Right Stick[/XInputControllerWindows/rightStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65acdb4b-f9d5-46eb-afcd-c5daa6f07d1a
+    m_ActionName: Player 2/Right Bumper[/Keyboard/e,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cd3cc4b2-749a-4158-82a4-8f571eee3777
+    m_ActionName: Player 2/Left Bumper[/XInputControllerWindows/leftShoulder,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d81972e-1665-4f46-af93-90969fee5736
+    m_ActionName: Player 2/North Button[/XInputControllerWindows/buttonNorth,/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f5b6390-f19e-4f4a-a0ab-2444adb65741
+    m_ActionName: Player 2/East Button[/XInputControllerWindows/buttonEast,/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 16d3d345-6aac-446a-80cf-766d8c4e031d
+    m_ActionName: Player 2/South Button[/XInputControllerWindows/buttonSouth,/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 13ed10b6-b9d6-4534-bff6-48a042a68aba
+    m_ActionName: Player 2/West Button[/XInputControllerWindows/buttonWest,/Keyboard/p]
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -372,16 +404,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 6481149214360474243}
   actionReference: {fileID: 7184712821322234070, guid: cc7a5821030889f43a838f8963bab8ef, type: 3}
-  pl1: {fileID: 6481149213723840549}
+  pl1: {fileID: 6481149215004024670}
   playerRB: {fileID: 8694906810495991185}
-  move: {x: 0, y: 0}
-  aim: {x: 0, y: 0}
   speed: 25
   bottomColor: {fileID: 8044377714229201509}
   groundCollider: {fileID: 6481149214847094639}
-  jumpHeight: 15
-  launchHeight: 8.85
-  launchSpeed: 40
+  jumpHeight: 25
+  launchHeight: 5
+  launchSpeed: 25
 --- !u!114 &7370024546773208346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,10 +424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7adb5da15ac9202419d73966ae1b9868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  highHitbox: {fileID: 0}
-  medHitbox: {fileID: 0}
-  lowHitbox: {fileID: 0}
+  Player: {fileID: 6481149214360474243}
+  highHitbox: {fileID: 6481149215294509849}
+  medHitbox: {fileID: 6481149213805182521}
+  lowHitbox: {fileID: 6481149214847094639}
 --- !u!1 &6481149214847094639
 GameObject:
   m_ObjectHideFlags: 0

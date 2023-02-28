@@ -16,8 +16,8 @@ public class InputManager : MonoBehaviour
     public GameObject pl1;
     public Rigidbody playerRB;
 
-    public Vector2 move;
-    public Vector2 aim;
+    private Vector2 move;
+    private Vector2 aim;
     public float speed;
     public static float moveMultiplier;
 
@@ -30,20 +30,42 @@ public class InputManager : MonoBehaviour
     public float launchSpeed;
     public static bool charged;
 
+    private int playerNum;
+    private string actionMap;
+
+    private InputActionAsset inputAsset;
+    private InputActionMap playerMap;
+    
+
+
+    public void OnPlayerJoined(PlayerInput player)
+    {
+        Debug.Log(player.playerIndex);
+    }
+    
     private void Awake()
     {
         playerControls = new SFBUNEWSYSTEM();
+        inputAsset = this.GetComponent<PlayerInput>().actions;
+        playerMap = inputAsset.FindActionMap("Player");
+
+        
+        
+
     }
 
     private void OnEnable()
     {
         playerControls.Enable();
-        actionReference.action.Enable();
+        //actionReference.action.Enable();
+        
+        
 
         playerControls.Player.NorthButton.performed += _ => Restet();
 
-        playerControls.Player.SouthButton.started += context =>
+        playerMap.FindAction("South Button").started += context =>  // DO THIS TO THE REST BIIIIIIIAATTTTTCCHHHHHHHHHHHHHHHHs
         {
+            Debug.Log("StartedToJump");
             //jump button started to press
             if (context.interaction is TapInteraction) StartedToCharge();
         };
@@ -79,18 +101,20 @@ public class InputManager : MonoBehaviour
             else RightLaunch();
         };
 
-
+        playerMap.Enable();
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
         actionReference.action.Disable();
+        playerMap.Disable();
     }
 
     private void Start()
     {
-        
+        Debug.Log(inputAsset);
+        Debug.Log(playerMap);
     }
 
     private void Update()
