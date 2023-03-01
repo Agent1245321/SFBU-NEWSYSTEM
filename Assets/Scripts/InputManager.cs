@@ -13,25 +13,24 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private InputActionReference actionReference;
 
-    public GameObject pl1;
+    private Transform pl1;
     public Rigidbody playerRB;
 
     private Vector2 move;
     private Vector2 aim;
     public float speed;
-    public static float moveMultiplier;
+    public float moveMultiplier;
 
     public MeshRenderer bottomColor;
     public GameObject groundCollider;
-    public static int bonusJumps;
-    public static bool isGrounded;
+    public int bonusJumps;
+    public bool isGrounded;
     public float jumpHeight;
     public float launchHeight;
     public float launchSpeed;
-    public static bool charged;
+    public bool charged;
 
-    private int playerNum;
-    private string actionMap;
+    
 
     private InputActionAsset inputAsset;
     private InputActionMap playerMap;
@@ -58,24 +57,24 @@ public class InputManager : MonoBehaviour
     {
         playerControls.Enable();
         //actionReference.action.Enable();
-        
-        
 
-        playerControls.Player.NorthButton.performed += _ => Restet();
 
-        playerMap.FindAction("South Button").started += context =>  // DO THIS TO THE REST BIIIIIIIAATTTTTCCHHHHHHHHHHHHHHHHs
+
+        playerMap.FindAction("North Button").performed += _ => Restet();
+
+        playerMap.FindAction("South Button").started += context => 
         {
             Debug.Log("StartedToJump");
             //jump button started to press
             if (context.interaction is TapInteraction) StartedToCharge();
         };
-        playerControls.Player.SouthButton.canceled += context =>
+        playerMap.FindAction("South Button").canceled += context =>
         {
             //jump button held long enough for slow tap
             if (context.interaction is TapInteraction) ChargedJumpUI();
         };
 
-        playerControls.Player.SouthButton.performed +=
+        playerMap.FindAction("South Button").performed +=
             context =>
             {
                 // call the jumps depending on interaction
@@ -85,7 +84,7 @@ public class InputManager : MonoBehaviour
                     Jump();
             };
 
-        playerControls.Player.LeftBumper.performed += context =>
+        playerMap.FindAction("Left Bumper").performed += context =>
         {
             //checks the left triggers interaction and calls apropriate function
             if (context.interaction is SlowTapInteraction) BigLeftLaunch();
@@ -93,7 +92,7 @@ public class InputManager : MonoBehaviour
 
         };
 
-        playerControls.Player.RightBumper.performed += context =>
+        playerMap.FindAction("Right Bumper").performed += context =>
         {
 
             //checks the right triggers interaction and calls apropriate function
@@ -113,15 +112,14 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(inputAsset);
-        Debug.Log(playerMap);
+     
     }
 
     private void Update()
     {
         ///set left and right stick values
-       move = playerControls.Player.LeftStick.ReadValue<Vector2>();
-        aim = playerControls.Player.RightStick.ReadValue<Vector2>();
+       move = playerMap.FindAction("Left Stick").ReadValue<Vector2>();
+        playerMap.FindAction("Right Stick").ReadValue<Vector2>();
         
     }
 
@@ -279,9 +277,11 @@ public class InputManager : MonoBehaviour
     {
         //resets velocity and position
         Debug.Log("reset");
+
+        pl1 = this.transform.parent.Find("Cube");
         playerRB.velocity = new Vector3(0, 0, 0);
-        pl1.transform.position = new Vector3(0, 5, 0);
-        pl1.transform.rotation = new Quaternion(0, 0, 0, 0);
+        pl1.position = new Vector3(0, 5, 0);
+        pl1.rotation = new Quaternion(0, 0, 0, 0);
     }
 
 }
