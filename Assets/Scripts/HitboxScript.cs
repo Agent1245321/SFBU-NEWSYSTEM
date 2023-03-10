@@ -6,6 +6,9 @@ public class HitboxScript : MonoBehaviour
 {
     private MeshRenderer thisColor;
     private Color originalColor;
+    public Collider collidingAttack;
+
+    private CombatManager combatManager;
     
 
 
@@ -15,6 +18,8 @@ public class HitboxScript : MonoBehaviour
         //sets the mesh and original color
         thisColor = this.gameObject.GetComponent<MeshRenderer>();
         originalColor = thisColor.material.color;
+
+        combatManager = this.transform.root.GetComponentInChildren<CombatManager>();
         
     }
     private void OnTriggerStay(Collider attack)
@@ -27,17 +32,17 @@ public class HitboxScript : MonoBehaviour
         thisColor.material.color = new Color(thisColor.material.color.r, thisColor.material.color.g, thisColor.material.color.b, thisColor.material.color.a + 50);
 
 
-        //sets the bools for the combat script
+        //sets the Colliders for the combat script
         if (attack.tag != "ground")
         {
-            if (this.gameObject.name == "HighHitbox") CombatManager.highCheck = true;
-            if (this.gameObject.name == "LowHitbox") CombatManager.lowCheck = true;
-            if (this.gameObject.name == "FloorCollider") CombatManager.floorCheck = true;
+            if (this.gameObject.name == "HighHitbox") combatManager.highCheck = attack;
+            if (this.gameObject.name == "LowHitbox") combatManager.lowCheck = attack;
+            if (this.gameObject.name == "FloorCollider") combatManager.floorCheck = attack;
         }
 
-        CombatManager.collidingAttack = attack;
+        
 
-        CombatManager.isBeingHit();
+        combatManager.isBeingHit();
 
         
     }
@@ -47,9 +52,9 @@ public class HitboxScript : MonoBehaviour
         //returns the color to original
         thisColor.material.color = originalColor;
 
-        //unsets the bools
-        if (this.gameObject.name == "HighHitbox") CombatManager.highCheck = false;
-        if (this.gameObject.name == "LowHitbox") CombatManager.lowCheck = false;
-        if (this.gameObject.name == "FloorCollider") CombatManager.floorCheck = false;
+        //unsets the Colliders in the Combat Script
+        if (this.gameObject.name == "HighHitbox") combatManager.highCheck = null;
+        if (this.gameObject.name == "LowHitbox") combatManager.lowCheck = null;
+        if (this.gameObject.name == "FloorCollider") combatManager.floorCheck = null;
     }
 }

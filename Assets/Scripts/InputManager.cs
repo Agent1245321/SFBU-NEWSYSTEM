@@ -34,6 +34,8 @@ public class InputManager : MonoBehaviour
 
     private InputActionAsset inputAsset;
     private InputActionMap playerMap;
+
+    private CombatManager combatManager;
     
 
 
@@ -44,6 +46,7 @@ public class InputManager : MonoBehaviour
     
     private void Awake()
     {
+        combatManager = this.gameObject.GetComponent<CombatManager>();
         playerControls = new SFBUNEWSYSTEM();
         inputAsset = this.GetComponent<PlayerInput>().actions;
         playerMap = inputAsset.FindActionMap("Player");
@@ -60,7 +63,7 @@ public class InputManager : MonoBehaviour
 
 
 
-        playerMap.FindAction("North Button").performed += _ => Restet();
+        playerMap.FindAction("North Button").performed += _ => combatManager.Jab();  /// temp changed this to jab
 
         playerMap.FindAction("South Button").started += context => 
         {
