@@ -36,6 +36,9 @@ public class InputManager : MonoBehaviour
     private InputActionMap playerMap;
 
     private CombatManager combatManager;
+
+    private Vector2 lStickSaved;
+    private string flickedAction;
     
 
 
@@ -61,9 +64,36 @@ public class InputManager : MonoBehaviour
         playerControls.Enable();
         //actionReference.action.Enable();
 
+        playerMap.FindAction("Left Stick").started += context => {
+            
+            StartCoroutine(stickSaver());
+        }; 
+        playerMap.FindAction("Left Stick").performed += context => {
+            
+            StartCoroutine(stickFlicker());
 
+        };
+        playerMap.FindAction("Left Stick").canceled += context => {
+            { Debug.Log("Did Not Flick"); }
 
-        playerMap.FindAction("North Button").performed += _ => combatManager.Jab();  /// temp changed this to jab
+        };
+
+        playerMap.FindAction("West Button").started += _ =>
+        {
+            if (flickedAction == ("D"))
+            {
+                Debug.Log("Down Flicked Attack");
+            }
+            else
+            { 
+                Debug.Log("'Not A Flicked");
+            }
+        };
+        playerMap.FindAction("North Button").performed += _ => Restet(); /// temp changed this to jab
+        playerMap.FindAction("East Button").performed += _ =>
+        {
+            StartCoroutine(combatManager.Jab());   
+        }; /// temp changed this to jab
 
         playerMap.FindAction("South Button").started += context => 
         {
@@ -287,4 +317,37 @@ public class InputManager : MonoBehaviour
         pl1.rotation = new Quaternion(0, 0, 0, 0);
     }
 
+
+
+    /// Input Command Stuff
+    /// 
+
+    private IEnumerator stickSaver()
+    {
+        // saves the vector value of the lefts stick right before a flick would be performed
+        yield return new WaitForSeconds(0.005f);
+        lStickSaved = playerMap.FindAction("Left Stick").ReadValue<Vector2>();
+        yield return null;
+    }
+
+    private IEnumerator stickFlicker()
+    {
+        // sets a bool to change moves to their flicked counterpart 
+        if (lStickSaved.y <= -.8) flickedAction = ("D");
+        if (lStickSaved.y >= .8) flickedAction = ("U");
+        if (lStickSaved.x <= -.8) flickedAction = ("L");
+        if (lStickSaved.x >= .8) flickedAction = ("R");
+        if (lStickSaved.y <= -.5 && lStickSaved.x <= -.5) flickedAction = ("DL");
+        if (lStickSaved.y >= .5 && lStickSaved.x >= .5) flickedAction = ("UR");
+        if (lStickSaved.y <= -.5 && lStickSaved.x >= .5) flickedAction = ("DR");
+        if (lStickSaved.y >= .5 && lStickSaved.x <= -.5) flickedAction = ("UL");
+        Debug.Log(flickedAction);
+
+        yield return new WaitForSeconds(0.14f);
+        
+        flickedAction = null;
+        lStickSaved = new Vector2(0.0f ,0.0f);
+        
+        yield return null;
+    }
 }

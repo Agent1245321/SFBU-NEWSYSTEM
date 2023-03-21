@@ -33,7 +33,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""8ce1951e-b973-4532-a2b4-7a78691979db"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap(duration=0.1)"",
                     ""initialStateCheck"": true
                 },
                 {

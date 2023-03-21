@@ -14,9 +14,9 @@ public class CombatManager : MonoBehaviour
     
     
     //the hitboxes
-    public GameObject highHitbox;
-    public GameObject medHitbox;
-    public GameObject lowHitbox;
+    private GameObject highHitbox;
+    private GameObject medHitbox;
+    private GameObject lowHitbox;
 
 
 
@@ -25,15 +25,19 @@ public class CombatManager : MonoBehaviour
     public Collider lowCheck;
     public Collider highCheck;
 
-    public GameObject jab1;
-    public GameObject highJab2;
-    public GameObject highJab3;
-    public GameObject lowJab2;
-    public GameObject lowJab3;
-    public GameObject upRoot1;
-    public GameObject upRoot2;
+    private GameObject jab1;
+    private GameObject highJab2;
+    private GameObject highJab3;
+    private GameObject lowJab2;
+    private GameObject lowJab3;
+    private GameObject upRoot1;
+    private GameObject upRoot2;
 
-    public bool isInHitStun;
+    private bool isInHitStun;
+    [SerializeField]
+    private float jabLength;
+    [SerializeField]
+    private float jabFrames;
 
 
 
@@ -43,13 +47,13 @@ public class CombatManager : MonoBehaviour
         hitboxScript = this.transform.root.GetComponentInChildren<HitboxScript>();
 
         //finds all the attacks and sets them to vars
-        jab1 = this.gameObject.transform.root.Find("Combat").Find("Jab1").gameObject;
-        highJab2 = this.gameObject.transform.root.Find("Combat").Find("HighJab2").gameObject;
-        highJab3 = this.gameObject.transform.root.Find("Combat").Find("HighJab3").gameObject;
-        lowJab2 = this.gameObject.transform.root.Find("Combat").Find("LowJab2").gameObject;
-        lowJab3 = this.gameObject.transform.root.Find("Combat").Find("LowJab3").gameObject;
-        upRoot1 = this.gameObject.transform.root.Find("Combat").Find("UpRoot1").gameObject;
-        upRoot2 = this.gameObject.transform.root.Find("Combat").Find("UpRoot2").gameObject;
+        jab1 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("Jab1").gameObject;
+        highJab2 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("HighJab2").gameObject;
+        highJab3 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("HighJab3").gameObject;
+        lowJab2 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("LowJab2").gameObject;
+        lowJab3 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("LowJab3").gameObject;
+        upRoot1 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("UpRoot1").gameObject;
+        upRoot2 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("UpRoot2").gameObject;
 
 
 
@@ -84,15 +88,15 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator Jab()                //// working on jab
     {
+        Debug.Log("Jab");
         jab1.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(jabFrames);
         highJab2.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(jabFrames);
         highJab3.SetActive(true);
+        yield return new WaitForSeconds(jabLength);
         jab1.SetActive(false);
-        yield return new WaitForSeconds(.1f);
         highJab2.SetActive(false);
-        yield return new WaitForSeconds(.1f);
         highJab3.SetActive(false);
 
         yield return null;
