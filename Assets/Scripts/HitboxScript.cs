@@ -8,6 +8,8 @@ public class HitboxScript : MonoBehaviour
     private Color originalColor;
     public Collider collidingAttack;
 
+    private ContactPoint contactPoint;
+
     private CombatManager combatManager;
     
 
