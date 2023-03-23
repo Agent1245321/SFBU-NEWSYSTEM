@@ -11,7 +11,7 @@
                     "id": "8ce1951e-b973-4532-a2b4-7a78691979db",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Tap(duration=0.1)",
+                    "interactions": "Press(pressPoint=0.1),Tap(duration=0.1)",
                     "initialStateCheck": true
                 },
                 {
@@ -185,6 +185,61 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Left Stick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Pad",
+                    "id": "9175593f-032c-4eff-b3f2-67f02fd16a99",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Stick",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "6032d38d-3809-43eb-bd51-1d254900db19",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Stick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "df357dca-9a55-47ba-b2fe-80c96e67110f",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Stick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "ae5d2ddd-b6b4-4eb9-b037-cafea431f8d6",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Stick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "cd465e3f-0118-44e7-a30f-44d7ee310133",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Left Stick",
                     "isComposite": false,
                     "isPartOfComposite": true

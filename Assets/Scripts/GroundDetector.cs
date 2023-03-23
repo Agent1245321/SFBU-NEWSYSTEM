@@ -24,6 +24,7 @@ public class GroundDetector : MonoBehaviour
             //sets grounded to true and resets bouns jumps
             inputManagerScript.isGrounded = true;
             inputManagerScript.bonusJumps = 1;
+            inputManagerScript.moveMultiplier = 1f;
         }
 
     }
@@ -34,7 +35,7 @@ public class GroundDetector : MonoBehaviour
             {
             // disables grounded when leaving ground
                 inputManagerScript.isGrounded = false;
-            inputManagerScript.moveMultiplier = 1f;
+            
             }
         }
 }

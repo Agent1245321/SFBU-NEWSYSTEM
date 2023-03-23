@@ -9,7 +9,7 @@ public class HitboxScript : MonoBehaviour
     public Collider collidingAttack;
 
     private ContactPoint contactPoint;
-
+    private InputManager inputManager;
     private CombatManager combatManager;
     
 
@@ -22,7 +22,8 @@ public class HitboxScript : MonoBehaviour
         originalColor = thisColor.material.color;
 
         combatManager = this.transform.root.GetComponentInChildren<CombatManager>();
-        
+        inputManager = this.transform.root.GetComponentInChildren<InputManager>();
+
     }
     private void OnTriggerStay(Collider attack)
     {
@@ -41,6 +42,7 @@ public class HitboxScript : MonoBehaviour
             if (this.gameObject.name == "LowHitbox") combatManager.lowCheck = attack;
             if (this.gameObject.name == "FloorCollider") combatManager.floorCheck = attack;
         }
+        
 
         
 

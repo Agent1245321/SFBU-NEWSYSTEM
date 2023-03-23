@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class InputManager : MonoBehaviour
     private Transform pl1;
     public Rigidbody playerRB;
 
+    [SerializeField]
     private Vector2 move;
     private Vector2 aim;
     public float speed;
@@ -37,9 +39,22 @@ public class InputManager : MonoBehaviour
 
     private CombatManager combatManager;
 
+
+    //Stick Input Stuff
     private Vector2 lStickSaved;
-    private string flickedAction;
-    
+    private string stickAction;
+    private bool flicking;
+
+    // UI Stuff
+    private GameObject controllerUI;
+    private Image uArrow;
+    private Image dArrow;
+    private Image lArrow;
+    private Image rArrow;
+    private Image ulArrow;
+    private Image urArrow;
+    private Image dlArrow;
+    private Image drArrow;
 
 
     public void OnPlayerJoined(PlayerInput player)
@@ -53,9 +68,19 @@ public class InputManager : MonoBehaviour
         playerControls = new SFBUNEWSYSTEM();
         inputAsset = this.GetComponent<PlayerInput>().actions;
         playerMap = inputAsset.FindActionMap("Player");
+        controllerUI = this.gameObject.transform.parent.Find("Controller").gameObject;
+        uArrow = controllerUI.transform.Find("Up Arrow").GetComponent<Image>();
+        dArrow = controllerUI.transform.Find("Down Arrow").GetComponent<Image>();
+        lArrow = controllerUI.transform.Find("Left Arrow").GetComponent<Image>();
+        rArrow = controllerUI.transform.Find("Right Arrow").GetComponent<Image>();
+        ulArrow = controllerUI.transform.Find("Up Left Arrow").GetComponent<Image>();
+        urArrow = controllerUI.transform.Find("Up Right Arrow").GetComponent<Image>();
+        dlArrow = controllerUI.transform.Find("Down Left Arrow").GetComponent<Image>();
+        drArrow = controllerUI.transform.Find("Down Right Arrow").GetComponent<Image>();
 
-        
-        
+
+
+
 
     }
 
@@ -70,17 +95,19 @@ public class InputManager : MonoBehaviour
         }; 
         playerMap.FindAction("Left Stick").performed += context => {
             
-            StartCoroutine(stickFlicker());
+            if(context.interaction is TapInteraction) StartCoroutine(stickFlicker());
+
 
         };
         playerMap.FindAction("Left Stick").canceled += context => {
-            { Debug.Log("Did Not Flick"); }
+            if (context.interaction is HoldInteraction) stickAction = null;
+
 
         };
 
         playerMap.FindAction("West Button").started += _ =>
         {
-            if (flickedAction == ("D"))
+            if (stickAction == ("D"))
             {
                 Debug.Log("Down Flicked Attack");
             }
@@ -153,6 +180,20 @@ public class InputManager : MonoBehaviour
         ///set left and right stick values
        move = playerMap.FindAction("Left Stick").ReadValue<Vector2>();
         playerMap.FindAction("Right Stick").ReadValue<Vector2>();
+        if(flicking == false)
+        {
+            if (move.y <= -.8) stickAction = ("D");
+            if (move.y >= .8) stickAction = ("U");
+            if (move.x <= -.8) stickAction = ("L");
+            if (move.x >= .8) stickAction = ("R");
+            if (move.y <= -.5 && move.x <= -.5) stickAction = ("DL");
+            if (move.y >= .5 && move.x >= .5) stickAction = ("UR");
+            if (move.y <= -.5 && move.x >= .5) stickAction = ("DR");
+            if (move.y >= .5 && move.x <= -.5) stickAction = ("UL");
+            Debug.Log(stickAction);
+        }
+
+        ControllerUI();
         
     }
 
@@ -325,6 +366,7 @@ public class InputManager : MonoBehaviour
     private IEnumerator stickSaver()
     {
         // saves the vector value of the lefts stick right before a flick would be performed
+        
         yield return new WaitForSeconds(0.005f);
         lStickSaved = playerMap.FindAction("Left Stick").ReadValue<Vector2>();
         yield return null;
@@ -332,22 +374,65 @@ public class InputManager : MonoBehaviour
 
     private IEnumerator stickFlicker()
     {
+        flicking = true;
         // sets a bool to change moves to their flicked counterpart 
-        if (lStickSaved.y <= -.8) flickedAction = ("D");
-        if (lStickSaved.y >= .8) flickedAction = ("U");
-        if (lStickSaved.x <= -.8) flickedAction = ("L");
-        if (lStickSaved.x >= .8) flickedAction = ("R");
-        if (lStickSaved.y <= -.5 && lStickSaved.x <= -.5) flickedAction = ("DL");
-        if (lStickSaved.y >= .5 && lStickSaved.x >= .5) flickedAction = ("UR");
-        if (lStickSaved.y <= -.5 && lStickSaved.x >= .5) flickedAction = ("DR");
-        if (lStickSaved.y >= .5 && lStickSaved.x <= -.5) flickedAction = ("UL");
-        Debug.Log(flickedAction);
+        if (lStickSaved.y <= -.8) stickAction = ("FD");
+        if (lStickSaved.y >= .8) stickAction = ("FU");
+        if (lStickSaved.x <= -.8) stickAction = ("FL");
+        if (lStickSaved.x >= .8) stickAction = ("FR");
+        if (lStickSaved.y <= -.5 && lStickSaved.x <= -.5) stickAction = ("FDL");
+        if (lStickSaved.y >= .5 && lStickSaved.x >= .5) stickAction = ("FUR");
+        if (lStickSaved.y <= -.5 && lStickSaved.x >= .5) stickAction = ("FDR");
+        if (lStickSaved.y >= .5 && lStickSaved.x <= -.5) stickAction = ("FUL");
+        Debug.Log(stickAction);
 
         yield return new WaitForSeconds(0.14f);
         
-        flickedAction = null;
+        flicking = false;
+        stickAction = null;
         lStickSaved = new Vector2(0.0f ,0.0f);
         
         yield return null;
+    }
+
+    void ControllerUI()
+    {
+        switch(stickAction)
+        {
+            case "U":
+                uArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "D":
+                dArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "L":
+                lArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "R":
+                rArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "UL":
+                ulArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "UR":
+                urArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "DL":
+                dlArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "DR":
+                drArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            default:
+                uArrow.color = new Color32(255, 255, 255, 100);
+                lArrow.color = new Color32(255, 255, 255, 100);
+                dArrow.color = new Color32(255, 255, 255, 100);
+                rArrow.color = new Color32(255, 255, 255, 100);
+                ulArrow.color = new Color32(255, 255, 255, 100);
+                urArrow.color = new Color32(255, 255, 255, 100);
+                dlArrow.color = new Color32(255, 255, 255, 100);
+                drArrow.color = new Color32(255, 255, 255, 100);
+                break;
+        }
     }
 }
