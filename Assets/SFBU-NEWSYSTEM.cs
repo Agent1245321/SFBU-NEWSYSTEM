@@ -78,7 +78,7 @@ public partial class @SFBUNEWSYSTEM : IInputActionCollection2, IDisposable
                     ""id"": ""586e5bd8-14f2-4a7a-8008-3f5835728d33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {

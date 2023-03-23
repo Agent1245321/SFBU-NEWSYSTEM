@@ -101,6 +101,36 @@ public class CombatManager : MonoBehaviour
 
         yield return null;
     }
+
+    public IEnumerator JabLow()                //// working on jab
+    {
+        Debug.Log("Jab Low");
+        jab1.SetActive(true);
+        yield return new WaitForSeconds(jabFrames);
+        lowJab2.SetActive(true);
+        yield return new WaitForSeconds(jabFrames);
+        lowJab3.SetActive(true);
+        yield return new WaitForSeconds(jabLength);
+        jab1.SetActive(false);
+        lowJab2.SetActive(false);
+        lowJab3.SetActive(false);
+
+        yield return null;
+    }
+
+    public IEnumerator UpRoot()                //// working on jab
+    {
+        Debug.Log("Up Root");
+        upRoot1.SetActive(true);
+        yield return new WaitForSeconds(jabFrames);
+        upRoot2.SetActive(true);;
+        yield return new WaitForSeconds(jabLength);
+        upRoot1.SetActive(false);
+        upRoot2.SetActive(false);
+
+
+        yield return null;
+    }
 }
 
 

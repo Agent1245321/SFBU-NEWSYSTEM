@@ -89,6 +89,10 @@ public class InputManager : MonoBehaviour
         playerControls.Enable();
         //actionReference.action.Enable();
 
+
+
+
+        // left stick inputs for flick
         playerMap.FindAction("Left Stick").started += context => {
             
             StartCoroutine(stickSaver());
@@ -99,41 +103,107 @@ public class InputManager : MonoBehaviour
 
 
         };
+
+        //normal interaction left stick
         playerMap.FindAction("Left Stick").canceled += context => {
             if (context.interaction is HoldInteraction) stickAction = null;
 
-
         };
 
-        playerMap.FindAction("West Button").started += _ =>
-        {
-            if (stickAction == ("D"))
-            {
-                Debug.Log("Down Flicked Attack");
-            }
-            else
-            { 
-                Debug.Log("'Not A Flicked");
-            }
-        };
-        playerMap.FindAction("North Button").performed += _ => Restet(); /// temp changed this to jab
+
+
+
+        // reset button
+        playerMap.FindAction("North Button").performed += _ => Restet(); combatManager.JabLow();
+
+
+
+
+
+        //Jab Button Switch
         playerMap.FindAction("East Button").performed += _ =>
         {
-            StartCoroutine(combatManager.Jab());   
-        }; /// temp changed this to jab
+            combatManager.JabLow();
+            switch (stickAction)
+            {
+                case "U":
+                    break;
 
+                case "D":
+                    StartCoroutine(combatManager.JabLow());
+                    Debug.Log("JabLow");
+                    break;
+                    
+                case "L":
+                    break;
+
+                case "R":
+                    break;
+
+                case "UL":
+                    break;
+
+                case "UR":
+                    break;
+
+                case "DL":
+                    break;
+
+                case "DR":
+                    break;
+
+                case "FU":
+                    break;
+
+                case "FD":
+                    StartCoroutine(combatManager.UpRoot());
+                    Debug.Log("UprootUno");
+                    break;
+
+                case "FL":
+                    break;
+
+                case "FR":
+                    break;
+
+                case "FUL":
+                    break;
+
+                case "FUR":
+                    break;
+
+                case "FDL":
+                    break;
+
+
+                case "FDR":
+                    break;
+
+                default:
+                    StartCoroutine(combatManager.Jab());
+                    Debug.Log("Default");
+                    break;
+
+            };
+
+        };
+
+
+            //jump button start
         playerMap.FindAction("South Button").started += context => 
         {
-            Debug.Log("StartedToJump");
             //jump button started to press
             if (context.interaction is TapInteraction) StartedToCharge();
         };
+
+            //jump button tap canceld , moved to charge
         playerMap.FindAction("South Button").canceled += context =>
         {
             //jump button held long enough for slow tap
             if (context.interaction is TapInteraction) ChargedJumpUI();
         };
 
+            //released the jump button
         playerMap.FindAction("South Button").performed +=
             context =>
             {
@@ -144,6 +214,11 @@ public class InputManager : MonoBehaviour
                     Jump();
             };
 
+
+
+
+
+            // Launches
         playerMap.FindAction("Left Bumper").performed += context =>
         {
             //checks the left triggers interaction and calls apropriate function
@@ -183,15 +258,25 @@ public class InputManager : MonoBehaviour
         if(flicking == false)
         {
             if (move.y <= -.8) stickAction = ("D");
-            if (move.y >= .8) stickAction = ("U");
-            if (move.x <= -.8) stickAction = ("L");
-            if (move.x >= .8) stickAction = ("R");
-            if (move.y <= -.5 && move.x <= -.5) stickAction = ("DL");
-            if (move.y >= .5 && move.x >= .5) stickAction = ("UR");
-            if (move.y <= -.5 && move.x >= .5) stickAction = ("DR");
-            if (move.y >= .5 && move.x <= -.5) stickAction = ("UL");
-            Debug.Log(stickAction);
+            else if (move.y >= .8) stickAction = ("U");
+            else if (move.x <= -.8) stickAction = ("L");
+            else if (move.x >= .8) stickAction = ("R");
+            else if (move.y <= -.5 && move.x <= -.5) stickAction = ("DL");
+            else if (move.y >= .5 && move.x >= .5) stickAction = ("UR");
+            else if (move.y <= -.5 && move.x >= .5) stickAction = ("DR");
+            else if (move.y >= .5 && move.x <= -.5) stickAction = ("UL");
+            else stickAction = null;
+            
         }
+
+        uArrow.color = new Color32(255, 255, 255, 100);
+        lArrow.color = new Color32(255, 255, 255, 100);
+        dArrow.color = new Color32(255, 255, 255, 100);
+        rArrow.color = new Color32(255, 255, 255, 100);
+        ulArrow.color = new Color32(255, 255, 255, 100);
+        urArrow.color = new Color32(255, 255, 255, 100);
+        dlArrow.color = new Color32(255, 255, 255, 100);
+        drArrow.color = new Color32(255, 255, 255, 100);
 
         ControllerUI();
         
@@ -398,7 +483,7 @@ public class InputManager : MonoBehaviour
     void ControllerUI()
     {
         switch(stickAction)
-        {
+        {   
             case "U":
                 uArrow.color = new Color32(255, 255, 255, 220);
                 break;
@@ -422,6 +507,30 @@ public class InputManager : MonoBehaviour
                 break;
             case "DR":
                 drArrow.color = new Color32(255, 255, 255, 220);
+                break;
+            case "FU":
+                uArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FD":
+                dArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FL":
+                lArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FR":
+                rArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FUL":
+                ulArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FUR":
+                urArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FDL":
+                dlArrow.color = new Color32(255, 100, 100, 220);
+                break;
+            case "FDR":
+                drArrow.color = new Color32(255, 100, 100, 220);
                 break;
             default:
                 uArrow.color = new Color32(255, 255, 255, 100);
