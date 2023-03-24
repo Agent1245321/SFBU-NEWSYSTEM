@@ -140,7 +140,7 @@ public class InputManager : MonoBehaviour
                         break;
 
                     case "L":
-                        StartCoroutine(combatManager.JabL());
+                        //StartCoroutine(combatManager.JabL());
                         break;
 
                     case "R":
@@ -154,7 +154,7 @@ public class InputManager : MonoBehaviour
                         break;
 
                     case "DL":
-                        StartCoroutine(combatManager.JabLowL());
+                        //StartCoroutine(combatManager.JabLowL());
                         break;
 
                     case "DR":
@@ -181,7 +181,7 @@ public class InputManager : MonoBehaviour
                         break;
 
                     case "FDL":
-                        StartCoroutine(combatManager.UpRootL());
+                        //StartCoroutine(combatManager.UpRootL());
                         break;
 
 

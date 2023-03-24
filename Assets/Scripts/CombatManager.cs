@@ -25,13 +25,13 @@ public class CombatManager : MonoBehaviour
     public Collider lowCheck;
     public Collider highCheck;
 
-    private GameObject jab1;
-    private GameObject highJab1_2;
-    private GameObject highJab1_3;
-    private GameObject lowJab1_2;
-    private GameObject lowJab1_3;
-    private GameObject upRoot1;
-    private GameObject upRoot2;
+    private GameObject jab1r;
+    private GameObject highJab1_2r;
+    private GameObject highJab1_3r;
+    private GameObject lowJab1_2r;
+    private GameObject lowJab1_3r;
+    private GameObject upRoot1r;
+    private GameObject upRoot2r;
     private GameObject jab1l;
     private GameObject highJab1_2l;
     private GameObject highJab1_3l;
@@ -60,14 +60,15 @@ public class CombatManager : MonoBehaviour
         inputManager = this.gameObject.GetComponent<InputManager>();
 
         //finds all the attacks and sets them to vars
-        jab1 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("Jab1").gameObject;
-        highJab1_2 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("HighJab2").gameObject;
-        highJab1_3 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("HighJab3").gameObject;
-        lowJab1_2 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("LowJab2").gameObject;
-        lowJab1_3 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("LowJab3").gameObject;
-        upRoot1 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("UpRoot1").gameObject;
-        upRoot2 = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("UpRoot2").gameObject;
+        jab1r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RCM").gameObject;
+        highJab1_2r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RMHM").gameObject;
+        highJab1_3r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RFHB").gameObject;
+        lowJab1_2r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RMLM").gameObject;
+        lowJab1_3r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RFLMB").gameObject;
+        upRoot1r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RCL").gameObject;
+        upRoot2r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RMLB").gameObject;
         //left equivilents
+        /*
         jab1l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("Jab1 L").gameObject;
         highJab1_2l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("HighJab2 L").gameObject;
         highJab1_3l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("HighJab3 L").gameObject;
@@ -75,6 +76,8 @@ public class CombatManager : MonoBehaviour
         lowJab1_3l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("LowJab3 L").gameObject;
         upRoot1l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("UpRoot1 L").gameObject;
         upRoot2l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("UpRoot2 L").gameObject;
+
+        */
 
 
 
@@ -115,19 +118,20 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(inputManager.AttackLag());
          
         Debug.Log("Jab");
-        jab1.SetActive(true);
+        jab1r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        highJab1_2.SetActive(true);
+        highJab1_2r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        highJab1_3.SetActive(true);
+        highJab1_3r.SetActive(true);
         yield return new WaitForSeconds(jabLength);
-        jab1.SetActive(false);
-        highJab1_2.SetActive(false);
-        highJab1_3.SetActive(false);
+        jab1r.SetActive(false);
+        highJab1_2r.SetActive(false);
+        highJab1_3r.SetActive(false);
 
         yield return null;
     }
 
+/*
     public IEnumerator JabL()                //// working on jab
     {
 
@@ -148,6 +152,7 @@ public class CombatManager : MonoBehaviour
 
         yield return null;
     }
+*/
 
     public IEnumerator JabLowR()                //// working on jab
     {
@@ -156,19 +161,20 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(inputManager.AttackLag());
 
         Debug.Log("Jab Low");
-        jab1.SetActive(true);
+        jab1r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        lowJab1_2.SetActive(true);
+        lowJab1_2r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        lowJab1_3.SetActive(true);
+        lowJab1_3r.SetActive(true);
         yield return new WaitForSeconds(jabLength);
-        jab1.SetActive(false);
-        lowJab1_2.SetActive(false);
-        lowJab1_3.SetActive(false);
+        jab1r.SetActive(false);
+        lowJab1_2r.SetActive(false);
+        lowJab1_3r.SetActive(false);
 
         yield return null;
     }
 
+    /*
     public IEnumerator JabLowL()                //// working on jab
     {
         //sets up the lag for the move
@@ -182,12 +188,14 @@ public class CombatManager : MonoBehaviour
         yield return new WaitForSeconds(jabFrames);
         lowJab1_3l.SetActive(true);
         yield return new WaitForSeconds(jabLength);
-        jab1.SetActive(false);
+        jab1l.SetActive(false);
         lowJab1_2l.SetActive(false);
         lowJab1_3l.SetActive(false);
 
         yield return null;
     }
+
+    */
 
     public IEnumerator UpRootR()                //// working on jab
     {
@@ -197,17 +205,18 @@ public class CombatManager : MonoBehaviour
 
         //performs the move
         Debug.Log("Up Root");
-        upRoot1.SetActive(true);
+        upRoot1r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        upRoot2.SetActive(true);;
+        upRoot2r.SetActive(true);;
         yield return new WaitForSeconds(jabLength);
-        upRoot1.SetActive(false);
-        upRoot2.SetActive(false);
+        upRoot1r.SetActive(false);
+        upRoot2r.SetActive(false);
 
 
         yield return null;
     }
 
+    /*
     public IEnumerator UpRootL()                //// working on jab
     {
         //sets up the lag for the move
@@ -226,6 +235,7 @@ public class CombatManager : MonoBehaviour
 
         yield return null;
     }
+    */
 }
 
 
