@@ -57,6 +57,13 @@ public class InputManager : MonoBehaviour
     private Image drArrow;
 
 
+    //frame data
+    [SerializeField]
+    public float hitStun;
+    [SerializeField]
+    public float attackLag;
+
+
     public void OnPlayerJoined(PlayerInput player)
     {
         Debug.Log(player.playerIndex);
@@ -94,13 +101,11 @@ public class InputManager : MonoBehaviour
 
         // left stick inputs for flick
         playerMap.FindAction("Left Stick").started += context => {
-            
             StartCoroutine(stickSaver());
         }; 
         playerMap.FindAction("Left Stick").performed += context => {
             
             if(context.interaction is TapInteraction) StartCoroutine(stickFlicker());
-
 
         };
 
@@ -114,7 +119,7 @@ public class InputManager : MonoBehaviour
 
 
         // reset button
-        playerMap.FindAction("North Button").performed += _ => Restet(); combatManager.JabLow();
+        playerMap.FindAction("North Button").performed += _ => Restet();
 
 
 
@@ -123,68 +128,74 @@ public class InputManager : MonoBehaviour
         //Jab Button Switch
         playerMap.FindAction("East Button").performed += _ =>
         {
-            combatManager.JabLow();
-            switch (stickAction)
+            if (attackLag == 0 && hitStun == 0)
             {
-                case "U":
-                    break;
+                switch (stickAction)
+                {
+                    case "U":
+                        break;
 
-                case "D":
-                    StartCoroutine(combatManager.JabLow());
-                    Debug.Log("JabLow");
-                    break;
-                    
-                case "L":
-                    break;
+                    case "D":
+                        
+                        break;
 
-                case "R":
-                    break;
+                    case "L":
+                        StartCoroutine(combatManager.JabL());
+                        break;
 
-                case "UL":
-                    break;
+                    case "R":
+                        StartCoroutine(combatManager.JabR());
+                        break;
 
-                case "UR":
-                    break;
+                    case "UL":
+                        break;
 
-                case "DL":
-                    break;
+                    case "UR":
+                        break;
 
-                case "DR":
-                    break;
+                    case "DL":
+                        StartCoroutine(combatManager.JabLowL());
+                        break;
 
-                case "FU":
-                    break;
+                    case "DR":
+                        StartCoroutine(combatManager.JabLowR());
+                        break;
 
-                case "FD":
-                    StartCoroutine(combatManager.UpRoot());
-                    Debug.Log("UprootUno");
-                    break;
+                    case "FU":
+                        break;
 
-                case "FL":
-                    break;
+                    case "FD":
+                        
+                        break;
 
-                case "FR":
-                    break;
+                    case "FL":
+                        break;
 
-                case "FUL":
-                    break;
+                    case "FR":
+                        break;
 
-                case "FUR":
-                    break;
+                    case "FUL":
+                        break;
 
-                case "FDL":
-                    break;
+                    case "FUR":
+                        break;
+
+                    case "FDL":
+                        StartCoroutine(combatManager.UpRootL());
+                        break;
 
 
-                case "FDR":
-                    break;
+                    case "FDR":
+                        StartCoroutine(combatManager.UpRootR());
+                        break;
 
-                default:
-                    StartCoroutine(combatManager.Jab());
-                    Debug.Log("Default");
-                    break;
+                    default:
+                        StartCoroutine(combatManager.JabR());
+                        Debug.Log("Default");
+                        break;
 
-            };
+                };
+            }
 
         };
 
@@ -543,5 +554,12 @@ public class InputManager : MonoBehaviour
                 drArrow.color = new Color32(255, 255, 255, 100);
                 break;
         }
+    }
+
+    public  IEnumerator AttackLag()
+    {
+        yield return new WaitForSeconds(attackLag);
+        attackLag = 0;
+        yield return null;
     }
 }
