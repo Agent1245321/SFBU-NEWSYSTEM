@@ -128,73 +128,12 @@ public class InputManager : MonoBehaviour
         //Jab Button Switch
         playerMap.FindAction("East Button").performed += _ =>
         {
+            
             if (attackLag == 0 && hitStun == 0)
             {
-                switch (stickAction)
-                {
-                    case "U":
-                        break;
-
-                    case "D":
-                        
-                        break;
-
-                    case "L":
-                        //StartCoroutine(combatManager.JabL());
-                        break;
-
-                    case "R":
-                        StartCoroutine(combatManager.JabR());
-                        break;
-
-                    case "UL":
-                        break;
-
-                    case "UR":
-                        break;
-
-                    case "DL":
-                        //StartCoroutine(combatManager.JabLowL());
-                        break;
-
-                    case "DR":
-                        StartCoroutine(combatManager.JabLowR());
-                        break;
-
-                    case "FU":
-                        break;
-
-                    case "FD":
-                        
-                        break;
-
-                    case "FL":
-                        break;
-
-                    case "FR":
-                        break;
-
-                    case "FUL":
-                        break;
-
-                    case "FUR":
-                        break;
-
-                    case "FDL":
-                        //StartCoroutine(combatManager.UpRootL());
-                        break;
-
-
-                    case "FDR":
-                        StartCoroutine(combatManager.UpRootR());
-                        break;
-
-                    default:
-                        StartCoroutine(combatManager.JabR());
-                        Debug.Log("Default");
-                        break;
-
-                };
+                combatManager.calledAction = stickAction;
+                combatManager.StartingAction();
+                
             }
 
         };

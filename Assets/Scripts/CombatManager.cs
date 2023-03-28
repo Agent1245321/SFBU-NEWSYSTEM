@@ -32,6 +32,10 @@ public class CombatManager : MonoBehaviour
     private GameObject lowJab1_3r;
     private GameObject upRoot1r;
     private GameObject upRoot2r;
+    private GameObject highJab2_1r;
+    private GameObject highJab2_2r;
+
+
     private GameObject jab1l;
     private GameObject highJab1_2l;
     private GameObject highJab1_3l;
@@ -46,6 +50,8 @@ public class CombatManager : MonoBehaviour
     private float jabFrames;
 
     private InputManager inputManager;
+    public string calledAction;
+    public string actionState;
 
 
     
@@ -67,6 +73,8 @@ public class CombatManager : MonoBehaviour
         lowJab1_3r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RFLMB").gameObject;
         upRoot1r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RCL").gameObject;
         upRoot2r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RMLB").gameObject;
+        highJab2_1r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RCH").gameObject;
+        highJab2_2r = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("RMH").gameObject;
         //left equivilents
         /*
         jab1l = this.gameObject.transform.root.Find("Cube").Find("Combat").Find("Jab1 L").gameObject;
@@ -101,6 +109,92 @@ public class CombatManager : MonoBehaviour
         */
     }
 
+    public void StartingAction()
+    {
+        switch (calledAction)
+        {
+            case "U":
+                break;
+
+            case "D":
+                break;
+
+            case "L":
+                break;
+
+            case "R":
+                RighAction();
+                Debug.Log(actionState);
+                Debug.Log("Call Me");
+                break;
+
+            case "UL":
+                break;
+
+            case "UR":
+                break;
+
+            case "DL":
+                break;
+
+            case "DR":
+                break;
+
+            case "FU":
+                break;
+
+            case "FD":
+                break;
+
+            case "FL":
+                break;
+
+            case "FR":
+                break;
+
+            case "FUL":
+                break;
+
+            case "FUR":
+                break;
+
+            case "FDL":
+                break;
+
+            case "FDR":
+                break;
+
+            default:
+                Debug.Log("Default");
+                break;
+        }
+    }
+
+
+    private void RighAction()
+    {
+        switch (actionState)
+        {
+            case ("default"):
+                Debug.Log("JAB 2");
+                JabR();
+                
+                
+            break;
+
+            case ("JabR"):
+                Debug.Log("JAB 2");
+                JabR_2();
+                
+                break;
+            case ("JabR_2"):
+                Debug.Log("JAB 2");
+                JabR_2();
+
+                break;
+        }
+    }
+
     public void isBeingHit()
     {
         
@@ -112,12 +206,13 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator JabR()                //// working on jab
     {
-        
+        Debug.Log("JABR");
         //sets up the lag for the move
         inputManager.attackLag = 2 * jabFrames + jabLength + .05f;
         StartCoroutine(inputManager.AttackLag());
-         
-        Debug.Log("Jab");
+        actionState = "JabR";
+
+        
         jab1r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
         highJab1_2r.SetActive(true);
@@ -131,28 +226,50 @@ public class CombatManager : MonoBehaviour
         yield return null;
     }
 
-/*
-    public IEnumerator JabL()                //// working on jab
+    public IEnumerator JabR_2()                //// working on jab
     {
 
         //sets up the lag for the move
+        
         inputManager.attackLag = 2 * jabFrames + jabLength + .05f;
         StartCoroutine(inputManager.AttackLag());
-
-        Debug.Log("Jab");
-        jab1l.SetActive(true);
+        actionState = "JabR_2";
+        Debug.Log("Jab2");
+        highJab2_1r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        highJab1_2l.SetActive(true);
+        highJab2_2r.SetActive(true);
         yield return new WaitForSeconds(jabFrames);
-        highJab1_3l.SetActive(true);
+        highJab1_3r.SetActive(true);
         yield return new WaitForSeconds(jabLength);
-        jab1l.SetActive(false);
-        highJab1_2l.SetActive(false);
-        highJab1_3l.SetActive(false);
+        jab1r.SetActive(false);
+        highJab2_2r.SetActive(false);
+        highJab1_3r.SetActive(false);
 
         yield return null;
     }
-*/
+
+    /*
+        public IEnumerator JabL()                //// working on jab
+        {
+
+            //sets up the lag for the move
+            inputManager.attackLag = 2 * jabFrames + jabLength + .05f;
+            StartCoroutine(inputManager.AttackLag());
+
+            Debug.Log("Jab");
+            jab1l.SetActive(true);
+            yield return new WaitForSeconds(jabFrames);
+            highJab1_2l.SetActive(true);
+            yield return new WaitForSeconds(jabFrames);
+            highJab1_3l.SetActive(true);
+            yield return new WaitForSeconds(jabLength);
+            jab1l.SetActive(false);
+            highJab1_2l.SetActive(false);
+            highJab1_3l.SetActive(false);
+
+            yield return null;
+        }
+    */
 
     public IEnumerator JabLowR()                //// working on jab
     {
